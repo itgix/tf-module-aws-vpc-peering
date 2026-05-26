@@ -1,6 +1,6 @@
 locals {
   # Determine if both VPCs are in the same region and account
-  same_region             = var.peering_enabled && data.aws_region.requestor.name == data.aws_region.accepter.name
+  same_region             = var.peering_enabled && data.aws_region.requestor.region == data.aws_region.accepter.region
   same_account            = var.peering_enabled && data.aws_caller_identity.requestor.account_id == data.aws_caller_identity.accepter.account_id
   same_account_and_region = local.same_region && local.same_account
 

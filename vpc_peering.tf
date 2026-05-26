@@ -7,7 +7,7 @@ resource "aws_vpc_peering_connection" "requestor" {
   peer_owner_id = data.aws_caller_identity.accepter.account_id
   peer_vpc_id   = var.accepter_vpc_id
   vpc_id        = var.requestor_vpc_id
-  peer_region   = data.aws_region.accepter.name
+  peer_region   = data.aws_region.accepter.region
   tags          = merge(var.tags, tomap({ "Side" = local.same_account_and_region ? "Both" : "Requester" }))
   timeouts {
     create = "15m"
